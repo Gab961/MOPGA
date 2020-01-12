@@ -1,0 +1,18 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} {{ post.title }} {% endblock %}
+
+{% block content %}
+
+	<article class="post">
+		<h1> Post {{ post.id }}</h1>
+
+		<p> {{ post.description }} </p>
+
+		<p>
+			<time datetime="{{ post.created_at|date:'d-m-Y' }}" class="time">Posted at {{ post.created_at }}</time>
+			 -
+			<time datetime="{{ post.updated_at|date:'d-m-Y' }}" class="time">Last update at {{ post.updated_at }}</time>
+		</p>
+	</article>
+{% endblock %}

@@ -1,0 +1,72 @@
+body {
+	background-color: #eeeeee;
+}
+
+footer {
+	text-align: center;
+	color: #ffffff;
+	background-color: #888888;
+}
+
+div {
+	display: inline-block;	
+}
+
+.article-list {
+	background-color: white;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	margin-bottom: 2em;
+	padding: 1em;
+	box-shadow: 1px 2px 1px black;
+}
+
+.article-list:hover {
+	box-shadow: 1px 2px 12px black;
+}
+
+.divBox {
+	background-color: white;
+	color: black;
+	border: 1px solid black;
+	box-shadow: 0 5px 5px black;
+	margin-bottom: 5px;
+	padding: 2px;
+
+}
+
+.divBox:hover {
+	background: #2AFF00;
+	cursor: pointer;
+}
+
+.navbar {
+	padding: 1em;
+	background-color: #1ce;
+}
+
+.navbar-right {
+	float: right;
+}
+
+.navbar-right a {
+	text-decoration: none;
+}
+
+.div-brand {
+	color: white;
+	font-size: 1.5em;
+}
+
+.time {
+	font-style: italic;
+	color: #999999;
+}
+
+.post {
+	margin-top: 10px;
+}
+
+.div-form {
+	display: block;
+}
