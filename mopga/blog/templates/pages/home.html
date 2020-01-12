@@ -2,20 +2,22 @@
 
 {% block content %}
 
-  <h1>Hello world - {{ posts|length }} posts</h1>
+  <h1>Blog - {{ posts|length }} posts</h1>
 
   {% for post in posts %}
-    <article class="article-list">
-      <h2> {{ post.title }} </h2>
-      <p>
-        {{ post.description|truncatewords:3 }}
-        <a href="{% url 'show' id=post.id %}">Lire la suite </a>
-      </p>
+    <a href="{% url 'show' id=post.id %}">
+      <article class="article-list">
+        <h2> {{ post.title }} </h2>
+        <p>
+          {{ post.description|truncatewords:3 }}
+          Lire la suite
+        </p>
 
 
-      <p><time datetime="{{ post.created_at|date:'d-m-Y' }}" class="time">Posted at {{ post.created_at }}</time></p>
-      </p>
-    </article>
+        <p><time datetime="{{ post.created_at|date:'d-m-Y' }}" class="time">Posted at {{ post.created_at }}</time></p>
+        </p>
+      </article>
+    </a>
 
   {% empty %}
     <p> Sorry, no post available </p>

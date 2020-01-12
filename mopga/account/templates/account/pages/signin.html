@@ -1,5 +1,7 @@
 {% extends 'layout/base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block title %}MOPGA - Sign In {% endblock %}
 
 {% block content %}
@@ -7,7 +9,7 @@
   <h1>Sign In</h1>
   <form class="" action="{% url 'signin' %}" method="post">
     {% csrf_token %}
-    {{ form }}
+    {{ form|crispy }}
     <input type="submit" value="Sign In">
   </form>
 

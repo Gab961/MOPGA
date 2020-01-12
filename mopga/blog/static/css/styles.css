@@ -8,8 +8,10 @@ footer {
 	background-color: #888888;
 }
 
-div {
-	display: inline-block;	
+
+a {
+	text-decoration: none;
+	color: black;
 }
 
 .article-list {
@@ -32,18 +34,18 @@ div {
 	box-shadow: 0 5px 5px black;
 	margin-bottom: 5px;
 	padding: 2px;
-
+	display:inline-block;
 }
 
 .divBox:hover {
 	background: #2AFF00;
-	cursor: pointer;
 }
 
 .navbar {
 	padding: 1em;
 	background-color: #1ce;
 }
+
 
 .navbar-right {
 	float: right;
@@ -56,6 +58,7 @@ div {
 .div-brand {
 	color: white;
 	font-size: 1.5em;
+	display:inline-block;
 }
 
 .time {
@@ -69,4 +72,9 @@ div {
 
 .div-form {
 	display: block;
+}
+
+.earth-logo {
+	max-width: 50px;
+	vertical-align: middle;
 }

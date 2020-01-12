@@ -1,5 +1,10 @@
+{% load static %}
+
 <nav class="navbar">
-	<div class="div-brand">Make Our Planet great again</div>
+	</div>
+		<a href="{% url 'home' %}"><img class="earth-logo" src="{% static 'resources/icons/save-the-earth.png' %}" alt="logo of earth" /></a>
+		<div class="div-brand">Make Our Planet great again</div>
+	</div>
 
 	<div class="navbar-right">
 		<a href="{% url 'newProject' %}"><div class="divBox">Create new Project</div></a>
