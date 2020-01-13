@@ -11,7 +11,7 @@ def signup(request):
         if form.is_valid():
             #form.save()
             pass
-        return redirect('../../')
+        #return redirect('../../')
     else:
         form = UserCreationForm()
 

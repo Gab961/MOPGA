@@ -1,34 +1,31 @@
 from django.shortcuts import render,get_object_or_404
 from django.http import Http404
 
-from .models import Post
-from .forms import PostForm
+from .models import Projet
+from .forms import ProjetForm
 
 def home(request):
-	list = Post.objects.all()
-	return render(request,'pages/home.html',{'posts':list})
+	#list = Post.objects.all()
+	return render(request,'pages/home.html')
 
 def show(request, id):
-	article = get_object_or_404(Post,pk=id)
+	#article = get_object_or_404(Post,pk=id)
 
-	return render(request, 'pages/show.html', {'post':article})
+	return render(request, 'pages/show.html')
 
 def newProject(request):
+	
 
 	if request.method == 'POST':
-		form = PostForm(request.POST)
+		form = ProjetForm(request.POST)
 		if form.is_valid():
-
-			title = form.cleaned_data['title']
-			description = form.cleaned_data['description']
-
-			form.save()
+			pass				
+			#form.save()
 
 	else:
-		form=PostForm()
+		form=ProjetForm()
 
 
-	form = PostForm()
 	return render(request, 'pages/newProject.html',{'form': form})
 
 

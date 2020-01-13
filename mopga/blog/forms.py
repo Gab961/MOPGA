@@ -19,3 +19,6 @@ class PostForm(forms.ModelForm):
         'title','description',
         Submit('submit','CREATE',css_class="btn-success")
         )
+
+class NoteForm(forms.ModelForm):
+    pass
