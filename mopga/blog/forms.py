@@ -8,7 +8,7 @@ class ProjetForm(forms.ModelForm):
 
     class Meta:
         model = Projet
-        fields = ('idProject','projectName','description','budget','note')
+        fields = ('projectName','description','budget','note')
 
 '''
     def __init__(self,*args,**kwargs):
@@ -24,4 +24,3 @@ class ProjetForm(forms.ModelForm):
 
 class NoteForm(forms.ModelForm):
     pass
-

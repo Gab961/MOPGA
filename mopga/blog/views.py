@@ -5,22 +5,21 @@ from .models import Projet
 from .forms import ProjetForm
 
 def home(request):
-	#list = Post.objects.all()
-	return render(request,'pages/home.html')
+	projets = Projet.objects.all()
+	return render(request,'pages/home.html',{'projets':projets})
 
 def show(request, id):
-	#article = get_object_or_404(Post,pk=id)
+	projet = get_object_or_404(Projet,pk=id)
 
-	return render(request, 'pages/show.html')
+	return render(request, 'pages/show.html',{'projet',projet})
 
 def newProject(request):
-	
 
 	if request.method == 'POST':
 		form = ProjetForm(request.POST)
 		if form.is_valid():
-			pass				
-			#form.save()
+			form=ProjetForm()
+			form.save()
 
 	else:
 		form=ProjetForm()

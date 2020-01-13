@@ -52,7 +52,7 @@ class Financeur(models.Model):
 '''
 
 class Projet(models.Model):
-    idProject = models.CharField(max_length=255, primary_key=True)
+    #idProject = models.CharField(max_length=255, primary_key=True)
     projectName = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
     budget = models.IntegerField()
