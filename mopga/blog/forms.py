@@ -1,14 +1,16 @@
 from django import forms
-from .models import Post
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit
 
-class PostForm(forms.ModelForm):
+from .models import Projet
+#from crispy_forms.helper import FormHelper
+#from crispy_forms.layout import Layout, Submit
+
+class ProjetForm(forms.ModelForm):
 
     class Meta:
-        model = Post
-        fields = ('title','description')
+        model = Projet
+        fields = ('idProject','projectName','description','budget','note')
 
+'''
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
 
@@ -18,7 +20,8 @@ class PostForm(forms.ModelForm):
         self.helper.layout = Layout(
         'title','description',
         Submit('submit','CREATE',css_class="btn-success")
-        )
+        )'''
 
 class NoteForm(forms.ModelForm):
     pass
+

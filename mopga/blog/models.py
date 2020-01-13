@@ -1,37 +1,76 @@
 from django.db import models
-from django.contrib.auth.models import User
-from django.core.validators import MaxValueValidator, MinValueValidator
-#from ratings.models import Rating
 
-# Create your models here.
+LICENSES = [('CC', 'CC'),
+            ('libre droit', 'libre droit'),
+            ('tous droits réservés', 'tous droits réservés'),
+            ]
 
-class Post(models.Model):
-	title = models.CharField(max_length=255)
-	description = models.TextField()
-	created_at = models.DateTimeField(auto_now_add=True)
-	updated_at = models.DateTimeField(auto_now=True)
-	#ratings = Ratings()
+'''
+class File(models.Model):
+    id = models.ImageField()
+    license = models.CharField(max_length=50, choices=LICENSES)
 
-	def __str__(self):
-		return self.title + " : " + self.description
-
-	def nb_of_rating(self):
-		ratings = Rating.objects.filter(post=self)
-		return len(ratings)
+    class Meta:
+        db_table = "File"
 
 
-	def average_rating(self):
-		sum = 0
-		ratings = Rating.objects.filter(post=self)
-		for rating in ratings:
-			sum += rating.stars
-		if len(ratings) > 0:
-			return sum/len(ratings)
-		else:
-			return 0
+class User(models.Model):
+    idUser = models.CharField(max_length=50, primary_key=True)
+    name = models.CharField(max_length=255)
+    address = models.CharField(max_length=255)
+    mail = models.CharField(max_length=255)
+    file = models.ForeignKey(File, on_delete=models.CASCADE, related_name='files')
 
-class Rating(models.Model):
-	post = models.ForeignKey(Post,on_delete=models.CASCADE)
-	#user = models.ForeignKey(User,on_delete=models.CASCADE)
-	stars = models.IntegerField(validators = [MinValueValidator(1),
-		MaxValueValidator(5)])
+    class Meta:
+        db_table = "User"
+
+
+class Demandeur(models.Model):
+    idRole = models.CharField(max_length=50, primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users')
+
+    class Meta:
+        db_table = "Demandeur"
+
+
+class Expert(models.Model):
+    idRole = models.CharField(max_length=50, primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users')
+    karma = models.IntegerField()
+
+    class Meta:
+        db_table = "Expert"
+
+
+class Financeur(models.Model):
+    idRole = models.CharField(max_length=50, primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users')
+    type = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = "Financeur"
+'''
+
+class Projet(models.Model):
+    idProject = models.CharField(max_length=255, primary_key=True)
+    projectName = models.CharField(max_length=255)
+    description = models.CharField(max_length=255)
+    budget = models.IntegerField()
+    note = models.IntegerField()
+    #demandeur = models.OneToOneField(Demandeur, on_delete=models.CASCADE)
+    #Expert = models.OneToOneField(Expert, on_delete=models.CASCADE)
+    #Financeur = models.OneToOneField(Financeur, on_delete=models.CASCADE)
+    #fichier = models.ForeignKey(File, on_delete=models.CASCADE, related_name='files')
+
+    class Meta:
+        db_table = "Projet"
+
+
+'''
+class Meta:
+    db_table = "Financeur"
+    db_table = "File"
+    db_table = "User"
+    db_table = "Demandeur"
+    db_table = "Expert"
+'''
