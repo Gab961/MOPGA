@@ -1,30 +1,8 @@
 from django.db import models
 
-LICENSES = [('CC', 'CC'),
-            ('libre droit', 'libre droit'),
-            ('tous droits réservés', 'tous droits réservés'),
-            ]
+
 
 '''
-class File(models.Model):
-    id = models.ImageField()
-    license = models.CharField(max_length=50, choices=LICENSES)
-
-    class Meta:
-        db_table = "File"
-
-
-class User(models.Model):
-    idUser = models.CharField(max_length=50, primary_key=True)
-    name = models.CharField(max_length=255)
-    address = models.CharField(max_length=255)
-    mail = models.CharField(max_length=255)
-    file = models.ForeignKey(File, on_delete=models.CASCADE, related_name='files')
-
-    class Meta:
-        db_table = "User"
-
-
 class Demandeur(models.Model):
     idRole = models.CharField(max_length=50, primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users')
