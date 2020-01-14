@@ -5,13 +5,21 @@ from .models import Projet
 from .forms import ProjetForm
 
 def home(request):
+	return render(request,'pages/home.html')
+
+def blog(request):
 	projets = Projet.objects.all()
-	return render(request,'pages/home.html',{'projets':projets})
+	return render(request,'pages/blog.html',{'projets':projets})
 
 def show(request, id):
 	projet = get_object_or_404(Projet,pk=id)
-
 	return render(request, 'pages/show.html',{'projet',projet})
+
+def archive(request):
+	return render(request, 'pages/archive.html')
+
+def mentions(request):
+	return render(request, 'pages/mentions.html')
 
 def newProject(request):
 

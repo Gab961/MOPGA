@@ -8,6 +8,9 @@ handler404 = 'blog.views.handler404'
 
 urlpatterns = [
     path('', views.home,name='home'),
+    path('blog/', views.blog,name='blog'),
+    path('archive/', views.archive,name='archive'),
+    path('mentions/', views.mentions,name='mention'),
     path('nouveau_projet/', views.newProject,name='newProject'),
     path('post/(?P<id>[0-9]+)', views.show,name='show'),
 ]

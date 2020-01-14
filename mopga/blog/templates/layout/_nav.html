@@ -3,11 +3,16 @@
 <nav class="navbar">
 	</div>
 		<a href="{% url 'home' %}"><img class="earth-logo" src="{% static 'resources/icons/save-the-earth.png' %}" alt="logo of earth" /></a>
-		<div class="div-brand">Make Our Planet great again</div>
+		<div class="div-brand">Make Our Planet Great Again</div>
 	</div>
 
 	<div class="navbar-right">
-		<a href="{% url 'newProject' %}"><div class="divBox">Create new Project</div></a>
+		<a href="{% url 'blog' %}" class="a-nav">Blog</a>
+		<a href="{% url 'contact' %}" class="a-nav">Contact</a>
+		<a href="{% url 'archive' %}" class="a-nav">Archive</a>
+		<a href="{% url 'mention' %}" class="a-nav">Mentions</a>
+
+		<!-- <a href="{% url 'newProject' %}"><div class="divBox">Create new Project</div></a> -->
 		<a href="{% url 'signup' %}"><div class="divBox">Sign In/Up</div></a>
 	</div>
 

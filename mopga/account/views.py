@@ -11,6 +11,12 @@ def sign(request):
 
     return render(request,'account/pages/signinup.html',{'formIn':formIn,'formUp':formUp})
 
+def contact(request):
+    formUp = UserSignUpForm()
+    formIn = UserSignInForm()
+
+    return render(request,'account/pages/contacts.html')
+
 def signup(request):
     if request.method == 'POST':
         form = UserSignUpForm(request.POST)
