@@ -7,11 +7,11 @@ from .models import Utilisateur
 class UserSignUpForm(UserCreationForm):
     class Meta:
         model = Utilisateur
-        fields = ('name','address','mail','password1','password2')
+        fields = ('username','address','email','password1','password2')
 
 
 class UserSignInForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
     class Meta:
         model = Utilisateur
-        fields = ('name','password')
+        fields = ('username','password')

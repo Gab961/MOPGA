@@ -120,6 +120,13 @@ USE_L10N = True
 USE_TZ = True
 
 
+#Authentication backends
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+AUTH_USER_MODEL='account.Utilisateur'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 

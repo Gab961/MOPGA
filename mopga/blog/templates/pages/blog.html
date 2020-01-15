@@ -2,19 +2,21 @@
 
 {% block content %}
 
-  <h1>Blog - {{ posts|length }} posts</h1>
-
-  {% for post in posts %}
-    <a href="{% url 'show' id=post.id %}">
+  <div class="div-form">
+    <h1>Blog - {{ projets|length }} posts</h1>
+  </div>
+  <a href="{% url 'newProject' %}" class="navbar-right"><div class="divBox">Create new Project</div></a>
+  {% for projet in projets %}
+    <a href="{% url 'show' id=projet.id %}">
       <article class="article-list">
-        <h2> {{ post.title }} </h2>
+        <h2> {{ projet.projectName }} </h2>
         <p>
-          {{ post.description|truncatewords:3 }}
+          {{ projet.description|truncatewords:3 }}
           Lire la suite
         </p>
 
 
-        <p><time datetime="{{ post.created_at|date:'d-m-Y' }}" class="time">Posted at {{ post.created_at }}</time></p>
+        <p><time datetime="{{ projet.created_at|date:'d-m-Y' }}" class="time">Posted at {{ projet.created_at }}</time></p>
         </p>
       </article>
     </a>

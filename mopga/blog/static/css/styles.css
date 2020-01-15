@@ -83,7 +83,7 @@ a {
 }
 
 .div-form {
-	display: block;
+	display: inline-block;
 }
 
 .earth-logo {

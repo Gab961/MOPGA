@@ -5,14 +5,14 @@
 {% block content %}
 
 	<article class="post">
-		<h1> {{ post.title }}</h1>
+		<h1> {{ projet.projectName }}</h1>
 
-		<p> {{ post.description }} </p>
+		<p> {{ projet.description }} </p>
 
 		<p>
-			<time datetime="{{ post.created_at|date:'d-m-Y' }}" class="time">Posted at {{ post.created_at }}</time>
+			<time datetime="{{ projet.created_at|date:'d-m-Y' }}" class="time">Posted at {{ projet.created_at }}</time>
 			 - <br>
-			<time datetime="{{ post.updated_at|date:'d-m-Y' }}" class="time">Last update at {{ post.updated_at }}</time>
+			<time datetime="{{ projet.updated_at|date:'d-m-Y' }}" class="time">Last update at {{ projet.updated_at }}</time>
 		</p>
 	</article>
 {% endblock %}

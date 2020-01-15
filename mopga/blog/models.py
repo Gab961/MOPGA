@@ -40,6 +40,7 @@ class Projet(models.Model):
     #Financeur = models.OneToOneField(Financeur, on_delete=models.CASCADE)
     #fichier = models.ForeignKey(File, on_delete=models.CASCADE, related_name='files')
 
+
     class Meta:
         db_table = "Projet"
 

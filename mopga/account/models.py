@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
@@ -17,10 +17,8 @@ class File(models.Model):
         db_table = "File"
 
 
-class Utilisateur(User):
-    name = models.CharField(max_length=255)
-    address = models.CharField(max_length=255)
-    mail = models.CharField(max_length=255)
+class Utilisateur(AbstractUser):
+    address = models.CharField(max_length=255,blank=True)
     #file = models.ForeignKey(File, on_delete=models.CASCADE, related_name='files')
 
     class Meta:

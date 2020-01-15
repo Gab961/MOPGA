@@ -13,7 +13,7 @@ def blog(request):
 
 def show(request, id):
 	projet = get_object_or_404(Projet,pk=id)
-	return render(request, 'pages/show.html',{'projet',projet})
+	return render(request, 'pages/show.html',{'projet':projet})
 
 def archive(request):
 	return render(request, 'pages/archive.html')
@@ -26,8 +26,8 @@ def newProject(request):
 	if request.method == 'POST':
 		form = ProjetForm(request.POST)
 		if form.is_valid():
-			form=ProjetForm()
 			form.save()
+			return redirect("blog")
 
 	else:
 		form=ProjetForm()
