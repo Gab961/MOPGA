@@ -37,7 +37,8 @@ def signup(request):
             username=request.POST.get('username'),
             address=request.POST.get('address'),
             email=request.POST.get('email'),
-            password=make_password(request.POST.get('password1'), salt=None, hasher='default')
+            #password=make_password(request.POST.get('password1'), salt=None, hasher='default')
+            password=request.POST.get('password1')
             )
             utilisateur.save()
             login(request, utilisateur)
