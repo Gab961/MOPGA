@@ -16,7 +16,12 @@ def show(request, id):
 	return render(request, 'pages/show.html',{'projet':projet})
 
 def archive(request):
-	return render(request, 'pages/archive.html')
+	queryset = None
+	if request.method == 'POST':
+		queryset = Projet.objects.filter(projectName=request.POST['search'])
+
+
+	return render(request, 'pages/archive.html',{'queryset':queryset})
 
 def mentions(request):
 	return render(request, 'pages/mentions.html')

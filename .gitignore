@@ -1,2 +1,6 @@
 
 env/
+
+mopga/account/migrations/
+
+mopga/db.sqlite3

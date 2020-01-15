@@ -35,6 +35,8 @@ class Projet(models.Model):
     description = models.CharField(max_length=255)
     budget = models.IntegerField()
     note = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     #demandeur = models.OneToOneField(Demandeur, on_delete=models.CASCADE)
     #Expert = models.OneToOneField(Expert, on_delete=models.CASCADE)
     #Financeur = models.OneToOneField(Financeur, on_delete=models.CASCADE)
