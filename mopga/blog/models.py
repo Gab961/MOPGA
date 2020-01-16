@@ -38,12 +38,14 @@ class Projet(models.Model):
     note = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    #createur = models.OneToOneField(Utilisateur, on_delete=models.CASCADE, )
+    createur = models.CharField(max_length=255)
     #demandeur = models.OneToOneField(Demandeur, on_delete=models.CASCADE)
     #Expert = models.OneToOneField(Expert, on_delete=models.CASCADE)
     #Financeur = models.OneToOneField(Financeur, on_delete=models.CASCADE)
     #fichier = models.ForeignKey(File, on_delete=models.CASCADE, related_name='files')
 
+    def addCreator(self,crea):
+        self.createur = crea
 
 
 

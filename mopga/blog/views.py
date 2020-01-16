@@ -31,6 +31,8 @@ def newProject(request):
 	if request.method == 'POST':
 		form = ProjetForm(request.POST)
 		if form.is_valid():
+			#tmp = request.user.username
+			#form.addCreator(tmp)
 			form.save()
 			return redirect("blog")
 

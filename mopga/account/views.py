@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import make_password, check_password
 
 from .models import Utilisateur
-from .forms import UserSignUpForm, UserSignInForm
+from .forms import UserSignUpForm, UserSignInForm, ContactForm
 
 # Create your views here.
 
@@ -22,8 +22,8 @@ def deconnection(request):
 
 
 def contact(request):
-
-    return render(request,'account/pages/contacts.html')
+    contact = ContactForm()
+    return render(request,'account/pages/contacts.html',{'contact':contact})
 
 def signup(request):
     formUp = UserSignUpForm()

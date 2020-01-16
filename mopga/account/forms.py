@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 
-from .models import Utilisateur
+from .models import Utilisateur, Contact
 
 class UserSignUpForm(UserCreationForm):
     creator = forms.BooleanField(required=False, initial=False)
@@ -20,3 +20,12 @@ class UserSignInForm(forms.ModelForm):
     class Meta:
         model = Utilisateur
         fields = ('username','password')
+
+class ContactForm(forms.Form):
+    destination = forms.EmailField(required=True)
+    subject = forms.CharField(required=True)
+    message = forms.CharField(widget=forms.Textarea, required=False)
+
+    class Meta:
+        model = Contact
+        fields = ('destination','subject','message')
