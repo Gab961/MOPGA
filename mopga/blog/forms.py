@@ -8,7 +8,7 @@ class ProjetForm(forms.ModelForm):
 
     class Meta:
         model = Projet
-        fields = ('projectName','description','budget','note')
+        fields = ('projectName','description','budget')
 
 
 '''
@@ -22,6 +22,12 @@ class ProjetForm(forms.ModelForm):
         'title','description',
         Submit('submit','CREATE',css_class="btn-success")
         )'''
+
+class addMoneyForm(forms.ModelForm):
+    financement_en_cours = forms.IntegerField(label='Add money')
+    class Meta:
+        model = Projet
+        fields = ('financement_en_cours',)
 
 class NoteForm(forms.ModelForm):
     pass

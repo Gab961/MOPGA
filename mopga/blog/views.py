@@ -2,7 +2,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 from django.http import Http404
 
 from .models import Projet
-from .forms import ProjetForm
+from .forms import ProjetForm,addMoneyForm
 
 def home(request):
 	return render(request,'pages/home.html')
@@ -13,7 +13,13 @@ def blog(request):
 
 def show(request, id):
 	projet = get_object_or_404(Projet,pk=id)
-	return render(request, 'pages/show.html',{'projet':projet})
+	if request.method == 'POST' and 'add-money-btn' in request.POST:
+		moneyToAdd = request.POST.get('financement_en_cours')
+		projet.budget_en_cours = projet.budget_en_cours + int(moneyToAdd)
+		setattr(Projet, 'budget_en_cours', projet.budget_en_cours)
+		projet.save()
+	addMoney = addMoneyForm()
+	return render(request, 'pages/show.html',{'projet':projet,'addmoney':addMoney,'id':id})
 
 def archive(request):
 	queryset = None
@@ -31,8 +37,7 @@ def newProject(request):
 	if request.method == 'POST':
 		form = ProjetForm(request.POST)
 		if form.is_valid():
-			#tmp = request.user.username
-			#form.addCreator(tmp)
+
 			form.save()
 			return redirect("blog")
 
