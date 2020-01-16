@@ -32,13 +32,25 @@ def signup(request):
         formUp = UserSignUpForm(request.POST)
         if formUp.is_valid():
             print('util créé')
-            print(request.POST.get('password1'))
+            creator2=False
+            if request.POST.get('creator')=='on':
+                creator2 = True
+            expert2=False
+            if request.POST.get('expert')=='on':
+                expert2 = True
+            financer2=False
+            if request.POST.get('financer')=='on':
+                financer2 = True
+
             utilisateur = Utilisateur.objects.create_user(
             username=request.POST.get('username'),
             address=request.POST.get('address'),
             email=request.POST.get('email'),
             #password=make_password(request.POST.get('password1'), salt=None, hasher='default')
-            password=request.POST.get('password1')
+            password=request.POST.get('password1'),
+            creator=creator2,
+            expert=expert2,
+            financer=financer2,
             )
             utilisateur.save()
             login(request, utilisateur)

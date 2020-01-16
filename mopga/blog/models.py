@@ -1,5 +1,6 @@
 from django.db import models
 
+from account.models import Utilisateur
 
 
 '''
@@ -37,14 +38,13 @@ class Projet(models.Model):
     note = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    #createur = models.OneToOneField(Utilisateur, on_delete=models.CASCADE, )
     #demandeur = models.OneToOneField(Demandeur, on_delete=models.CASCADE)
     #Expert = models.OneToOneField(Expert, on_delete=models.CASCADE)
     #Financeur = models.OneToOneField(Financeur, on_delete=models.CASCADE)
     #fichier = models.ForeignKey(File, on_delete=models.CASCADE, related_name='files')
 
 
-    class Meta:
-        db_table = "Projet"
 
 
 '''

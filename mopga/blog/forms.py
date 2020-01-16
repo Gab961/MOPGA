@@ -5,7 +5,7 @@ from .models import Projet
 #from crispy_forms.layout import Layout, Submit
 
 class ProjetForm(forms.ModelForm):
-
+    
     class Meta:
         model = Projet
         fields = ('projectName','description','budget','note')

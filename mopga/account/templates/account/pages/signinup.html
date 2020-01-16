@@ -5,7 +5,7 @@
 {% block content %}
 
   <h1>Sign In</h1>
-  <form class="" action="{% url 'signin' %}" method="post">
+  <form class="form-group" action="{% url 'signin' %}" method="post">
     {% csrf_token %}
     {{ formIn|crispy }}
     <input type="submit" value="Sign In">
