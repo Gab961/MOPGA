@@ -4,15 +4,15 @@ from django.contrib.auth.forms import UserCreationForm
 
 from django.contrib.auth.models import User
 
-from .models import Contact#, Utilisateur,
+from .models import Contact, Utilisateur
 
 class UserSignUpForm(UserCreationForm):
     creator = forms.BooleanField(required=False, initial=False)
     expert = forms.BooleanField(required=False, initial=False)
     financer = forms.BooleanField(required=False, initial=False)
     class Meta:
-        model = User
-        fields = ('username','email',
+        model = Utilisateur
+        fields = ('username','address','email',
         'creator','expert','financer','password1','password2')
 
 
@@ -20,7 +20,7 @@ class UserSignInForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
 
     class Meta:
-        model = User
+        model = Utilisateur
         fields = ('username','password')
 
 class ContactForm(forms.Form):

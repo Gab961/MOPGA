@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, User
 
 # Create your models here.
 
@@ -15,15 +15,15 @@ class File(models.Model):
 
     class Meta:
         db_table = "File"
+'''
 
-
-class Utilisateur(AbstractUser):
+class Utilisateur(User):
     address = models.CharField(max_length=255,blank=True)
     creator = models.BooleanField(default=False)
     expert = models.BooleanField(default=False)
     financer = models.BooleanField(default=False)
     #file = models.ForeignKey(File, on_delete=models.CASCADE, related_name='files')
-'''
+
 class Contact(models.Model):
     destination = models.EmailField(max_length=255)
     subject = models.CharField(max_length=255)
