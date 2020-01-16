@@ -1,5 +1,5 @@
 from django.urls import include, path, re_path
-from django.conf.urls import include, handler404
+from django.conf.urls import handler404
 
 from . import views
 

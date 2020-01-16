@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import make_password, check_password
 
-from .models import Utilisateur
+#from .models import Utilisateur
 from .forms import UserSignUpForm, UserSignInForm, ContactForm
 
 # Create your views here.
@@ -44,13 +44,13 @@ def signup(request):
 
             utilisateur = Utilisateur.objects.create_user(
             username=request.POST.get('username'),
-            address=request.POST.get('address'),
+            # address=request.POST.get('address'),
             email=request.POST.get('email'),
             #password=make_password(request.POST.get('password1'), salt=None, hasher='default')
             password=request.POST.get('password1'),
-            creator=creator2,
-            expert=expert2,
-            financer=financer2,
+            #creator=creator2,
+            #expert=expert2,
+            #financer=financer2,
             )
             utilisateur.save()
             login(request, utilisateur)

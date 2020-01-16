@@ -1,0 +1,23 @@
+version: '2'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    stdin_open: true
+    tty: true
+    command: python ./mopga/manage.py runserver 0.0.0.0:8000
+    container_name: "docker_mopga_python"
+    volumes:
+      - .:/mopga
+    ports:
+      - 8000:8000
+  portainer:
+    image: portainer/portainer
+    container_name: portainer
+    command: -H unix:///var/run/docker.sock
+    restart: always
+    ports:
+      - 9000:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

@@ -2,15 +2,17 @@ from django import forms
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 
-from .models import Utilisateur, Contact
+from django.contrib.auth.models import User
+
+from .models import Contact#, Utilisateur,
 
 class UserSignUpForm(UserCreationForm):
     creator = forms.BooleanField(required=False, initial=False)
     expert = forms.BooleanField(required=False, initial=False)
     financer = forms.BooleanField(required=False, initial=False)
     class Meta:
-        model = Utilisateur
-        fields = ('username','address','email',
+        model = User
+        fields = ('username','email',
         'creator','expert','financer','password1','password2')
 
 
@@ -18,7 +20,7 @@ class UserSignInForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
 
     class Meta:
-        model = Utilisateur
+        model = User
         fields = ('username','password')
 
 class ContactForm(forms.Form):

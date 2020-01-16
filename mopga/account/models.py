@@ -8,7 +8,7 @@ LICENSES = [('CC', 'CC'),
             ('tous droits réservés', 'tous droits réservés'),
             ]
 
-
+'''
 class File(models.Model):
     image = models.ImageField()
     license = models.CharField(max_length=50, choices=LICENSES)
@@ -23,7 +23,7 @@ class Utilisateur(AbstractUser):
     expert = models.BooleanField(default=False)
     financer = models.BooleanField(default=False)
     #file = models.ForeignKey(File, on_delete=models.CASCADE, related_name='files')
-
+'''
 class Contact(models.Model):
     destination = models.EmailField(max_length=255)
     subject = models.CharField(max_length=255)

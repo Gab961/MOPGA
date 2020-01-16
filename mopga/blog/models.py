@@ -1,7 +1,5 @@
 from django.db import models
 
-from account.models import Utilisateur
-
 class Note:
     note_final = float(0)
     nb_note = 0
