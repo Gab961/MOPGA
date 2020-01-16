@@ -28,4 +28,17 @@
 				<button type="submit" name="add-money-btn">Send</button>
 			</form>
 		{% endif %}
+
+		{% if request.user.expert %}
+			<!-- <form class="" action="{% url 'show' id=id %}" method="post">
+				{% csrf_token %}
+				{{addmoney}}
+				<button type="submit" name="add-money-btn">Send</button>
+			</form>-->
+			<form class="" action="{% url 'show' id=id %}" method="post">
+				{% csrf_token %}
+				{{ NoteForm }}
+				<button type="submit" name="note">Note</button>
+			</form>
+		{% endif %}
 {% endblock %}

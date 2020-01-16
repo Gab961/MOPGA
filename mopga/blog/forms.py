@@ -29,5 +29,6 @@ class addMoneyForm(forms.ModelForm):
         model = Projet
         fields = ('financement_en_cours',)
 
-class NoteForm(forms.ModelForm):
-    pass
+class NoteForm(forms.Form):
+    CHOICES = (('0', 0),('1', 1),('2', 2),('3', 3),('4', 4),('5', 5))
+    field = forms.ChoiceField(choices=CHOICES)

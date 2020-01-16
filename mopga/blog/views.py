@@ -2,7 +2,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 from django.http import Http404
 
 from .models import Projet
-from .forms import ProjetForm,addMoneyForm
+from .forms import ProjetForm,addMoneyForm, NoteForm
 
 def home(request):
 	return render(request,'pages/home.html')
@@ -19,7 +19,8 @@ def show(request, id):
 		setattr(Projet, 'budget_en_cours', projet.budget_en_cours)
 		projet.save()
 	addMoney = addMoneyForm()
-	return render(request, 'pages/show.html',{'projet':projet,'addmoney':addMoney,'id':id})
+	noteForm=NoteForm()
+	return render(request, 'pages/show.html',{'projet':projet,'addmoney':addMoney,'id':id,'NoteForm':noteForm})
 
 def archive(request):
 	queryset = None
