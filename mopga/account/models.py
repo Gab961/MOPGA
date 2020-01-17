@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+from blog.models import Note
+
 # Create your models here.
 
 LICENSES = [('CC', 'CC'),
@@ -27,6 +29,13 @@ class User(AbstractUser):
     financer = models.BooleanField(default=False)
     #file = models.ForeignKey(File, on_delete=models.CASCADE, related_name='files')
 
+    @classmethod
+    def showNote(self,id):
+        query = Note.objects.filter(idProject=id,expert=self.username)
+        if query.count() == 0:
+            return True
+        else:
+            return False
 
 class Contact(models.Model):
     destination = models.EmailField(max_length=255)

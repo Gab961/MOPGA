@@ -1,7 +1,8 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import Http404
 
-from .models import Projet
+from account.models import User
+from .models import Projet, Note
 from .forms import ProjetForm,addMoneyForm, NoteForm
 
 def home(request):
@@ -20,10 +21,38 @@ def show(request, id):
 		Projet.objects.filter(pk=id).update(budget_en_cours=budgettmp)
 		return redirect("show",id=id)
 
+	if request.method == 'POST' and 'note-btn' in request.POST:
+		note=request.POST.get('note')
+		idProjet = id
+		expert = request.user.username
+		commentaire=request.POST.get('comment')
+		query = Note.objects.filter(idProject=id,expert=expert)
+		if query.count() == 0:
+			Note.objects.create(
+				idProject = idProjet,
+		    	expert = expert,
+		    	note=note,
+				comment=commentaire
+				)
+
+
+	querysets = Note.objects.filter(idProject=id)
+	sum = 0
+	nb = 0
+	for query in querysets:
+		sum = sum + query.note
+		nb = nb + 1
+
+	note_final = 0
+	if nb != 0:
+		note_final = sum/nb
+
 	projet = get_object_or_404(Projet,pk=id)
 	addMoney = addMoneyForm()
 	noteForm=NoteForm()
-	return render(request, 'pages/show.html',{'projet':projet,'addmoney':addMoney,'id':id,'NoteForm':noteForm})
+	return render(request, 'pages/show.html',{'projet':projet,
+		'addmoney':addMoney,'id':id,'NoteForm':noteForm,
+		'comments':querysets,'note':note_final})
 
 def archive(request):
 	queryset = None

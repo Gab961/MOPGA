@@ -31,4 +31,5 @@ class addMoneyForm(forms.ModelForm):
 
 class NoteForm(forms.Form):
     CHOICES = (('0', 0),('1', 1),('2', 2),('3', 3),('4', 4),('5', 5))
-    field = forms.ChoiceField(choices=CHOICES)
+    note = forms.ChoiceField(choices=CHOICES)
+    comment = forms.CharField(max_length=10000, required=True, widget=forms.Textarea)
