@@ -5,7 +5,8 @@ from .models import Projet
 from .forms import ProjetForm,addMoneyForm, NoteForm
 
 def home(request):
-	return render(request,'pages/home.html')
+	projets = Projet.objects.order_by('created_at')
+	return render(request,'pages/home.html',{'projets':projets})
 
 def blog(request):
 	projets = Projet.objects.all()
