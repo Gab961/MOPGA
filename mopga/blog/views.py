@@ -15,9 +15,12 @@ def show(request, id):
 	projet = get_object_or_404(Projet,pk=id)
 	if request.method == 'POST' and 'add-money-btn' in request.POST:
 		moneyToAdd = request.POST.get('financement_en_cours')
-		projet.budget_en_cours = projet.budget_en_cours + int(moneyToAdd)
-		setattr(Projet, 'budget_en_cours', projet.budget_en_cours)
-		projet.save()
+		budgettmp = projet.budget_en_cours + int(moneyToAdd)
+		#setattr(Projet, 'budget_en_cours', projet.budget_en_cours)
+		Projet.objects.filter(pk=id).update(budget_en_cours=budgettmp)
+		return redirect("show",id=id)
+
+	projet = get_object_or_404(Projet,pk=id)
 	addMoney = addMoneyForm()
 	noteForm=NoteForm()
 	return render(request, 'pages/show.html',{'projet':projet,'addmoney':addMoney,'id':id,'NoteForm':noteForm})
