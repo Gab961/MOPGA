@@ -2,26 +2,23 @@ from django import forms
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 
-from django.contrib.auth.models import User
 
-from .models import Contact#, Utilisateur,
+from .models import Contact, User
 
-class UserSignUpForm(UserCreationForm):
-    creator = forms.BooleanField(required=False, initial=False)
-    expert = forms.BooleanField(required=False, initial=False)
-    financer = forms.BooleanField(required=False, initial=False)
-    class Meta:
-        model = User
-        fields = ('username','email',
-        'creator','expert','financer','password1','password2')
+class UserSignUpForm(forms.Form):
+    username = forms.CharField(max_length=255)
+    email = forms.CharField(max_length=255,required=False)
+    image = forms.ImageField(required=False)
+    address = forms.CharField(max_length=255,required=False)
+    creator = forms.BooleanField(required=False)
+    expert = forms.BooleanField(required=False)
+    financer = forms.BooleanField(required=False)
+    password1 = forms.CharField(max_length=255,widget=forms.PasswordInput)
+    password2 = forms.CharField(max_length=255,widget=forms.PasswordInput)
 
-
-class UserSignInForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
-
-    class Meta:
-        model = User
-        fields = ('username','password')
+class UserSignInForm(forms.Form):
+    username = forms.CharField(max_length=255)
+    password = forms.CharField(max_length=255,widget=forms.PasswordInput)
 
 class ContactForm(forms.Form):
     destination = forms.EmailField(required=True)

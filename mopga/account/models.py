@@ -8,22 +8,26 @@ LICENSES = [('CC', 'CC'),
             ('tous droits réservés', 'tous droits réservés'),
             ]
 
-'''
-class File(models.Model):
-    image = models.ImageField()
+
+class Image(models.Model):
+    image = models.ImageField(default='default.jpg',upload_to='image_pics')
     license = models.CharField(max_length=50, choices=LICENSES)
 
-    class Meta:
-        db_table = "File"
 
 
-class Utilisateur(AbstractUser):
+class User(AbstractUser):
+    #user = models.OneToOneField(User,on_delete=models.CASCADE)
+    username = models.CharField(max_length=255,unique=True)
+    password = models.CharField(max_length=255)
+    email = models.CharField(max_length=255)
+    image = models.ImageField(default='default.png',upload_to='utilisateur_pics')
     address = models.CharField(max_length=255,blank=True)
     creator = models.BooleanField(default=False)
     expert = models.BooleanField(default=False)
     financer = models.BooleanField(default=False)
     #file = models.ForeignKey(File, on_delete=models.CASCADE, related_name='files')
-'''
+
+
 class Contact(models.Model):
     destination = models.EmailField(max_length=255)
     subject = models.CharField(max_length=255)

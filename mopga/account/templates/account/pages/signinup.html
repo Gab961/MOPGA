@@ -11,6 +11,21 @@
     <input type="submit" value="Sign In">
   </form>
 
+  {% if formIn.errors %}
+    {% for field in formIn %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in formIn.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+
   <hr>
 
   <h1>Create an account</h1>
@@ -20,5 +35,19 @@
     <input type="submit" value="Sign Up">
   </form>
 
+  {% if formUp.errors %}
+    {% for field in formUp %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in formUp.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+  {% endif %}
 
 {% endblock %}

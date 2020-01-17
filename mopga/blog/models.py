@@ -56,7 +56,7 @@ class Projet(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     createur = models.CharField(max_length=255)
     financement_en_cours = models.PositiveIntegerField(default=0)
-    budget_en_cours = 0
+    budget_en_cours = models.PositiveIntegerField(default=0)
     note = Note()
     #demandeur = models.OneToOneField(Demandeur, on_delete=models.CASCADE)
     #Expert = models.OneToOneField(Expert, on_delete=models.CASCADE)
