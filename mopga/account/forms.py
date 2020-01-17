@@ -21,9 +21,19 @@ class UserSignInForm(forms.Form):
     password = forms.CharField(max_length=255,widget=forms.PasswordInput)
 
 class ContactForm(forms.Form):
-    destination = forms.EmailField(required=True)
-    subject = forms.CharField(required=True)
-    message = forms.CharField(widget=forms.Textarea, required=False)
+    contact_name = forms.CharField(required=True)
+    contact_email = forms.EmailField(required=True)
+    content = forms.CharField(
+        required=True,
+        widget=forms.Textarea
+    )
+
+    # the new bit we're adding
+    def __init__(self, *args, **kwargs):
+        super(ContactForm, self).__init__(*args, **kwargs)
+        self.fields['contact_name'].label = "Votre nom :"
+        self.fields['contact_email'].label = "Votre adresse de messagerie :"
+        self.fields['content'].label = "Veuillez saisir votre message :"
 
     class Meta:
         model = Contact
