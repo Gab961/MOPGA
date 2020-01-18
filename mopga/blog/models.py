@@ -48,6 +48,7 @@ class Projet(models.Model):
     createur = models.CharField(max_length=255)
     budget_en_cours = models.PositiveIntegerField(default=0)
     createur = models.CharField(max_length=255)
+    image = models.ImageField(default='default.png',upload_to='project_pics',blank=True,)
 
     @classmethod
     def average(self):

@@ -10,3 +10,7 @@ mopga/account/__pycache__/
 mopga/blog/__pycache__/
 
 mopga/blog/migrations/
+
+mopga/media/project_pics/
+
+mopga/media/utilisateur_pics/

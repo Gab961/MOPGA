@@ -83,12 +83,13 @@ def newProject(request):
 	if request.method == 'POST':
 		form = ProjetForm(request.POST)
 		if form.is_valid():
-
+			image = request.FILES['image']
 			Projet.objects.create(
 			projectName = request.POST.get('projectName'),
 		    description = request.POST.get('description'),
 		    budget = request.POST.get('budget'),
-			createur= request.user.username
+			createur= request.user.username,
+			image = image
 			)
 			return redirect("blog")
 

@@ -6,9 +6,8 @@
 
 	<article class="post">
 		<h1> {{ projet.projectName }}</h1>
-
+		<img class="" src="{{ projet.image.url }}" width="200">
 		<p> {{ projet.description }} </p>
-
 		<p>
 			<time datetime="{{ projet.created_at|date:'d-m-Y' }}" class="time">Posted at {{ projet.created_at }}</time>
 			 - <br>

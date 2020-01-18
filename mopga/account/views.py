@@ -75,13 +75,13 @@ def signup(request):
                 financer2 = True
 
             if request.POST.get('password1') != request.POST.get('password2'):
-                return
+                return render(request, 'account/pages/signinup.html', {'formIn': formIn, 'formUp': formUp})
 
             utilisateur = User.objects.create_user(
                 username=request.POST.get('username'),
                 address=request.POST.get('address'),
+                image=request.FILES['image'],
                 email=request.POST.get('email'),
-                image=request.POST.get('image'),
                 # password=make_password(request.POST.get('password1'), salt=None, hasher='default')
                 password=request.POST.get('password1'),
                 creator=creator2,
