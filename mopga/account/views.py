@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
 from django.shortcuts import redirect
 
+from blog.models import Projet,Note,moneyGiven
+
 from django.template.loader import get_template
 from .models import User
 from .forms import UserSignUpForm, UserSignInForm, ContactForm
@@ -73,13 +75,13 @@ def signup(request):
                 financer2 = True
 
             if request.POST.get('password1') != request.POST.get('password2'):
-                return
+                return render(request, 'account/pages/signinup.html', {'formIn': formIn, 'formUp': formUp})
 
             utilisateur = User.objects.create_user(
                 username=request.POST.get('username'),
                 address=request.POST.get('address'),
+                image=request.FILES['image'],
                 email=request.POST.get('email'),
-                image=request.POST.get('image'),
                 # password=make_password(request.POST.get('password1'), salt=None, hasher='default')
                 password=request.POST.get('password1'),
                 creator=creator2,
@@ -111,5 +113,11 @@ def signin(request):
 
 
 @login_required
-def profile(request):
-    return render(request, 'account/pages/profile.html')
+def profile(request,username):
+    profil = User.objects.get(username=username)
+    project = Projet.objects.filter(createur=username)
+    financed = moneyGiven.objects.filter(financeur=username)
+    judged = Note.objects.filter(expert=username)
+
+    return render(request, 'account/pages/profile.html',{'profil':profil,
+    'project':project,'financed':financed,'judged':judged})

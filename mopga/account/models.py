@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+from blog.models import Note
+
 # Create your models here.
 
 LICENSES = [('CC', 'CC'),
@@ -10,7 +12,7 @@ LICENSES = [('CC', 'CC'),
 
 
 class Image(models.Model):
-    image = models.ImageField(default='default.jpg',upload_to='image_pics')
+    image = models.ImageField(default='/media/default.jpg',upload_to='image_pics')
     license = models.CharField(max_length=50, choices=LICENSES)
 
 
@@ -27,6 +29,13 @@ class User(AbstractUser):
     financer = models.BooleanField(default=False)
     #file = models.ForeignKey(File, on_delete=models.CASCADE, related_name='files')
 
+    @classmethod
+    def showNote(self,id):
+        query = Note.objects.filter(idProject=id,expert=self.username)
+        if query.count() == 0:
+            return True
+        else:
+            return False
 
 class Contact(models.Model):
     destination = models.EmailField(max_length=255)

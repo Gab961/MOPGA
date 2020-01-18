@@ -1,25 +1,16 @@
 from django.db import models
 
-class Note:
-    note_final = float(0)
-    nb_note = 0
-    notes={}
+class Note(models.Model):
+    idProject = models.PositiveIntegerField()
+    expert = models.CharField(max_length=255)
+    note = models.PositiveIntegerField()
+    comment = models.CharField(max_length=10000)
 
-    def average(self):
-        if nb_note == 0:
-            note_final = 0
-        else:
-            self.note_final = sumTotal()/self.nb_note
+class moneyGiven(models.Model):
+    idProject = models.PositiveIntegerField()
+    financeur = models.CharField(max_length=255)
+    moneyGiven = models.PositiveIntegerField()
 
-    def sumTotal(self):
-        sum = 0
-        for key, value in self.notes.items():
-            sum += value
-
-        return sum
-
-    def addNote(self,username,note):
-        self.notes[username] = note
 '''
 class Demandeur(models.Model):
     idRole = models.CharField(max_length=50, primary_key=True)
@@ -55,14 +46,32 @@ class Projet(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     createur = models.CharField(max_length=255)
-    financement_en_cours = models.PositiveIntegerField(default=0)
     budget_en_cours = models.PositiveIntegerField(default=0)
-    note = Note()
+    createur = models.CharField(max_length=255)
+    image = models.ImageField(default='default.png',upload_to='project_pics',blank=True,)
+
+    @classmethod
+    def average(self):
+        if self.nb_note == 0:
+            self.note_final.update(self.sumTotal/self.nb_note)
+        else:
+            self.note_final.update(self.sumTotal/self.nb_note)
+
+    @classmethod
+    def addNote(self,note):
+        self.sumTotal.update(self.sumTotal + note)
+        self.nb_note.update(self.nb_note + 1)
+
+
+    @classmethod
+    def update(self):
+        self.average()
     #demandeur = models.OneToOneField(Demandeur, on_delete=models.CASCADE)
     #Expert = models.OneToOneField(Expert, on_delete=models.CASCADE)
     #Financeur = models.OneToOneField(Financeur, on_delete=models.CASCADE)
     #fichier = models.ForeignKey(File, on_delete=models.CASCADE, related_name='files')
 
+    @classmethod
     def addCreator(self,crea):
         self.createur = crea
 

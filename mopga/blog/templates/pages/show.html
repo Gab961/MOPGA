@@ -6,9 +6,8 @@
 
 	<article class="post">
 		<h1> {{ projet.projectName }}</h1>
-
+		<img class="" src="{{ projet.image.url }}" width="200">
 		<p> {{ projet.description }} </p>
-
 		<p>
 			<time datetime="{{ projet.created_at|date:'d-m-Y' }}" class="time">Posted at {{ projet.created_at }}</time>
 			 - <br>
@@ -18,7 +17,7 @@
 
 		<p>
 			Financement : {{projet.budget_en_cours}}/{{projet.budget}} -
-			Note : {{ projet.note.note_final }} / 5
+			Note : {{ note }} / 5
 		</p>
 
 		{% if request.user.financer %}
@@ -29,7 +28,7 @@
 			</form>
 		{% endif %}
 
-		{% if request.user.expert %}
+		{% if request.user.is_authenticated and request.user.expert %}
 			<!-- <form class="" action="{% url 'show' id=id %}" method="post">
 				{% csrf_token %}
 				{{addmoney}}
@@ -38,7 +37,14 @@
 			<form class="" action="{% url 'show' id=id %}" method="post">
 				{% csrf_token %}
 				{{ NoteForm }}
-				<button type="submit" name="note">Note</button>
+				<button type="submit" name="note-btn">Note</button>
 			</form>
 		{% endif %}
+
+		{% for comment in comments %}
+			<article>
+				<a href="{% url 'profile' username=comment.expert %}">{{comment.expert}}</a> : {{ comment.note }}/5 - {{ comment.comment }}
+			</article>
+		{% endfor %}
+
 {% endblock %}

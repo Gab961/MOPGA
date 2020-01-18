@@ -1,14 +1,41 @@
 {% extends "layout/base.html" %}
-{% load crispy_forms_tags %}
 {% block content %}
     <div class="content-section">
       <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.image.url }}">
+        <img class="rounded-circle account-img" src="{{ profil.image.url }}">
         <div class="media-body">
-          <h2 class="account-heading">{{ user.username }}</h2>
-          <p class="text-secondary">{{ user.email }}</p>
+          <h2 class="account-heading">{{ profil.username }}</h2>
+          <p class="text-secondary">{{ profil.email }}</p>
         </div>
       </div>
       <!-- FORM HERE -->
     </div>
+
+  {% if profil.creator %}
+  <p>Projets :</p>
+    {% for projet in project %}
+      <p>
+        {{ projet }}
+      </p>
+    {% endfor %}
+  {% endif %}
+
+  {% if profil.financer %}
+  <p>Financé :</p>
+    {% for financ in financed %}
+      <p>
+        {{ financed }}
+      </p>
+    {% endfor %}
+  {% endif %}
+
+  {% if profil.expert %}
+  <p>Expert :</p>
+    {% for note in judged %}
+      <p>
+        {{ note }}
+      </p>
+    {% endfor %}
+  {% endif %}
+
 {% endblock content %}
