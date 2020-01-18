@@ -4,3 +4,11 @@ env/
 mopga/account/migrations/
 
 mopga/db.sqlite3
+
+mopga/account/__pycache__/
+
+mopga/blog/__pycache__/
+
+mopga/blog/migrations/
+
+mopga/mopga/__pycache__/
