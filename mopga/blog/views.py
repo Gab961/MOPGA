@@ -6,7 +6,8 @@ from .models import Projet, Note, moneyGiven
 from .forms import ProjetForm,addMoneyForm, NoteForm
 
 def home(request):
-	return render(request,'pages/home.html')
+	projets = Projet.objects.order_by('created_at')
+	return render(request,'pages/home.html',{'projets':projets})
 
 def blog(request):
 	projets = Projet.objects.all()
@@ -68,7 +69,8 @@ def show(request, id):
 def archive(request):
 	queryset = None
 	if request.method == 'POST':
-		queryset = Projet.objects.filter(projectName=request.POST['search'])
+		queryset = Projet.objects.filter(projectName__contains =request.POST['search'])
+		#queryset = Projet.objects.filter(projectName__startswith=request.POST['search'])
 
 
 	return render(request, 'pages/archive.html',{'queryset':queryset})
