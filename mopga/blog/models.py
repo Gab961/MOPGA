@@ -6,6 +6,11 @@ class Note(models.Model):
     note = models.PositiveIntegerField()
     comment = models.CharField(max_length=10000)
 
+class moneyGiven(models.Model):
+    idProject = models.PositiveIntegerField()
+    financeur = models.CharField(max_length=255)
+    moneyGiven = models.PositiveIntegerField()
+
 '''
 class Demandeur(models.Model):
     idRole = models.CharField(max_length=50, primary_key=True)
@@ -41,9 +46,8 @@ class Projet(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     createur = models.CharField(max_length=255)
-    financement_en_cours = models.PositiveIntegerField(default=0)
     budget_en_cours = models.PositiveIntegerField(default=0)
-
+    idCreateur = models.PositiveIntegerField(default=0)
 
     @classmethod
     def average(self):

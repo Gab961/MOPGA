@@ -23,11 +23,9 @@ class ProjetForm(forms.ModelForm):
         Submit('submit','CREATE',css_class="btn-success")
         )'''
 
-class addMoneyForm(forms.ModelForm):
+class addMoneyForm(forms.Form):
     financement_en_cours = forms.IntegerField(label='Add money')
-    class Meta:
-        model = Projet
-        fields = ('financement_en_cours',)
+
 
 class NoteForm(forms.Form):
     CHOICES = (('0', 0),('1', 1),('2', 2),('3', 3),('4', 4),('5', 5))

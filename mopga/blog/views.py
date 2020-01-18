@@ -2,7 +2,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 from django.http import Http404
 
 from account.models import User
-from .models import Projet, Note
+from .models import Projet, Note, moneyGiven
 from .forms import ProjetForm,addMoneyForm, NoteForm
 
 def home(request):
@@ -17,8 +17,12 @@ def show(request, id):
 	if request.method == 'POST' and 'add-money-btn' in request.POST:
 		moneyToAdd = request.POST.get('financement_en_cours')
 		budgettmp = projet.budget_en_cours + int(moneyToAdd)
-		#setattr(Projet, 'budget_en_cours', projet.budget_en_cours)
-		Projet.objects.filter(pk=id).update(budget_en_cours=budgettmp)
+		moneyGiven.objects.create(
+			idProject = id,
+			financeur = request.user.username,
+			moneyGiven= moneyToAdd,
+			)
+
 		return redirect("show",id=id)
 
 	if request.method == 'POST' and 'note-btn' in request.POST:
@@ -47,7 +51,14 @@ def show(request, id):
 	if nb != 0:
 		note_final = sum/nb
 
+	querymoney = moneyGiven.objects.filter(idProject=id)
+	sum = 0
+	for query in querymoney:
+		sum = sum + query.moneyGiven
+	Projet.objects.filter(pk=id).update(budget_en_cours=sum)
+
 	projet = get_object_or_404(Projet,pk=id)
+
 	addMoney = addMoneyForm()
 	noteForm=NoteForm()
 	return render(request, 'pages/show.html',{'projet':projet,

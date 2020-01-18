@@ -44,7 +44,7 @@
 
 		{% for comment in comments %}
 			<article>
-				{{comment.expert}} : {{ comment.note }}/5 - {{ comment.comment }}
+				<a href="{% url 'profile' username=comment.expert %}">{{comment.expert}}</a> : {{ comment.note }}/5 - {{ comment.comment }}
 			</article>
 		{% endfor %}
 

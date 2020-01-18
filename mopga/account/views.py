@@ -81,5 +81,6 @@ def signin(request):
 
 
 @login_required
-def profile(request):
-    return render(request, 'account/pages/profile.html')
+def profile(request,username):
+    profil = User.objects.get(username=username)
+    return render(request, 'account/pages/profile.html',{'profil':profil})
