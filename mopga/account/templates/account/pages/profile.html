@@ -1,5 +1,4 @@
 {% extends "layout/base.html" %}
-{% load crispy_forms_tags %}
 {% block content %}
     <div class="content-section">
       <div class="media">
@@ -11,4 +10,32 @@
       </div>
       <!-- FORM HERE -->
     </div>
+
+  {% if profil.creator %}
+  <p>Projets :</p>
+    {% for projet in project %}
+      <p>
+        {{ projet }}
+      </p>
+    {% endfor %}
+  {% endif %}
+
+  {% if profil.financer %}
+  <p>Financé :</p>
+    {% for financ in financed %}
+      <p>
+        {{ financed }}
+      </p>
+    {% endfor %}
+  {% endif %}
+
+  {% if profil.expert %}
+  <p>Expert :</p>
+    {% for note in judged %}
+      <p>
+        {{ note }}
+      </p>
+    {% endfor %}
+  {% endif %}
+
 {% endblock content %}

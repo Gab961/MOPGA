@@ -82,7 +82,12 @@ def newProject(request):
 		form = ProjetForm(request.POST)
 		if form.is_valid():
 
-			form.save()
+			Projet.objects.create(
+			projectName = request.POST.get('projectName'),
+		    description = request.POST.get('description'),
+		    budget = request.POST.get('budget'),
+			createur= request.user.username
+			)
 			return redirect("blog")
 
 	else:

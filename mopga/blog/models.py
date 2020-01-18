@@ -47,7 +47,7 @@ class Projet(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     createur = models.CharField(max_length=255)
     budget_en_cours = models.PositiveIntegerField(default=0)
-    idCreateur = models.PositiveIntegerField(default=0)
+    createur = models.CharField(max_length=255)
 
     @classmethod
     def average(self):

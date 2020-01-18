@@ -4,6 +4,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth.decorators import login_required
 
+from blog.models import Projet,Note,moneyGiven
+
 from .models import User
 from .forms import UserSignUpForm, UserSignInForm, ContactForm
 
@@ -83,4 +85,9 @@ def signin(request):
 @login_required
 def profile(request,username):
     profil = User.objects.get(username=username)
-    return render(request, 'account/pages/profile.html',{'profil':profil})
+    project = Projet.objects.filter(createur=username)
+    financed = moneyGiven.objects.filter(financeur=username)
+    judged = Note.objects.filter(expert=username)
+
+    return render(request, 'account/pages/profile.html',{'profil':profil,
+    'project':project,'financed':financed,'judged':judged})

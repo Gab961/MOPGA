@@ -22,7 +22,7 @@ class User(AbstractUser):
     username = models.CharField(max_length=255,unique=True)
     password = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
-    image = models.ImageField(default='default.png',upload_to='utilisateur_pics')
+    #image = models.ImageField(default='default.png',upload_to='utilisateur_pics')
     address = models.CharField(max_length=255,blank=True)
     creator = models.BooleanField(default=False)
     expert = models.BooleanField(default=False)
