@@ -16,18 +16,18 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i class="fas fa-user mr-1"></i>
+                <a class="nav-link active" data-toggle="tab" href="#panel8" role="tab"><i class="fas fa-user mr-1"></i>
                     Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i class="fas fa-user-plus mr-1"></i>
+                <a class="nav-link" data-toggle="tab" href="#panel7" role="tab"><i class="fas fa-user-plus mr-1"></i>
                     Register</a>
             </li>
         </ul>
 
         <!-- Tab panels -->
         <div class="tab-content">
-            <!--Panel 7-->
+            <!--Panel sign up-->
             <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
 
                 <form class="form-group" action="{% url 'signup' %}" method="post">
@@ -37,9 +37,9 @@
                 </form>
 
             </div>
-            <!--/.Panel 7-->
+            <!--/.Panel sign up-->
 
-            <!--Panel 8-->
+            <!--Panel sign in-->
             <div class="tab-pane fade" id="panel8" role="tabpanel">
 
                 <form class="form-group" action="{% url 'signin' %}" method="post">
@@ -48,7 +48,7 @@
                     <input type="submit" value="Sign In">
                 </form>
             </div>
-            <!--/.Panel 8-->
+            <!--/.Panel sign in-->
         </div>
 
     </div>

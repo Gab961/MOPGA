@@ -3,7 +3,7 @@
 {% block content %}
 
   <div class="div-form">
-    <h1>Blog - {{ projets|length }} posts</h1>
+    <h1> {{ projets|length }} - Projets</h1>
   </div>
   {% if request.user.is_authenticated and request.user.creator %}
   <a href="{% url 'newProject' %}" class="navbar-right"><div class="divBox">Create new Project</div></a>
@@ -11,8 +11,10 @@
 
 
   {% for projet in projets %}
+<div >
     <a href="{% url 'show' id=projet.id %}">
       <article class="article-list">
+        <img src="{{ projet.image.url}}">
         <p class="time">{{ projet.createur }}</p>
         <h2> {{ projet.projectName }} </h2>
         <p>
@@ -27,7 +29,7 @@
 
   {% empty %}
     <p> Sorry, no post available </p>
-
+</div>
   {% endfor %}
 
 {% endblock %}

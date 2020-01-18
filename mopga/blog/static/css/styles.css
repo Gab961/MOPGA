@@ -18,7 +18,12 @@ footer {
 	left: 0;
 	right: 0
 }
-
+.titleSite{
+    color:#4799BA !important ;
+    text-transform: uppercase;
+    position: fixed;
+    padding-left: 3%;
+}
 
 a {
 	text-decoration: none;
@@ -30,11 +35,10 @@ a {
 	display:inline-block;
 	padding-right: 1em;
 	font-size:1.5em;
+	text-transform: uppercase
 }
 
-.a-nav:hover {
-	color: green;
-}
+
 
 .article-list {
 	background-color: white;
