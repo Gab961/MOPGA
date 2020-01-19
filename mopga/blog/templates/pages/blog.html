@@ -1,35 +1,37 @@
 {% extends 'layout/base.html' %}
 
 {% block content %}
+<div class="container">
+    <div class="div-form">
+        <h1> {{ projets|length }} - Projets</h1>
+    </div>
+    {% if request.user.is_authenticated and request.user.creator %}
 
-  <div class="div-form">
-    <h1> {{ projets|length }} - Projets</h1>
-  </div>
-  {% if request.user.is_authenticated and request.user.creator %}
-  <a href="{% url 'newProject' %}" class="navbar-right"><div class="divBox">Create new Project</div></a>
-  {% endif %}
-
-
-  {% for projet in projets %}
-<div >
-    <a href="{% url 'show' id=projet.id %}">
-      <article class="article-list">
-        <img src="{{ projet.image.url}}">
-        <p class="time">{{ projet.createur }}</p>
-        <h2> {{ projet.projectName }} </h2>
-        <p>
-          {{ projet.description|truncatewords:3 }}
-        </p>
-
-
-        <p><time datetime="{{ projet.created_at|date:'d-m-Y' }}" class="time">Posted at {{ projet.created_at }}</time></p>
-        </p>
-      </article>
+      <a href="{% url 'newProject' %}" class="btn btn-info navbar-btn navbar-right">
+        Create new Project
     </a>
+    {% endif %}
 
-  {% empty %}
-    <p> Sorry, no post available </p>
+    <ul style="list-style: none">
+        {% for projet in projets %}
+        <div class=" onhover">
+            <li class="row">
+                <div class="col-3">
+                    <img src="{{ projet.image.url}}" style="border: 1px solid #ddd; border-radius: 4px; padding: 5px; width: 150px;">
+                </div>
+                <div class="col-6">
+                    <h2><a href="{% url 'show' id=projet.id %}">{{ projet.projectName }}</a></h2>
+                    <p>{{ projet.description | truncatewords:3 }}</p>
+                    <p>
+                        <time datetime="{{ projet.created_at|date:'d-m-Y' }}" class="time">Posted at {{ projet.created_at }}</time>
+                    </p>
+                </div>
+
+                {% empty %}
+                <p> Sorry, no project available </p>
+            </li>
+        </div>
+        {% endfor %}
+    </ul>
 </div>
-  {% endfor %}
-
 {% endblock %}

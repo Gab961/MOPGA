@@ -1,0 +1,29 @@
+
+.wrapper {
+  width: 100%px;
+  min-height: 500px;
+  position: absolute;
+  border-radius: 5px;
+  background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+  overflow: hidden;
+  border-radius: 10px;
+ box-shadow: 5px 10px 10px rgba(2, 128, 144, 0.2);
+}
+
+.wave {
+  width: 1000px;
+  height: 1025px;
+  position: absolute;
+  bottom: -25%;
+  left: 75%;
+  margin-left: -500px;
+  margin-top: -500px;
+  border-radius:35%;
+  background: rgba(255, 255, 255, .20);
+  animation: wave 15s infinite linear;
+}
+
+@keyframes wave {
+  from { transform: rotate(0deg);}
+  from { transform: rotate(-360deg);}
+}

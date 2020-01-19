@@ -3,14 +3,21 @@
 {% load crispy_forms_tags %}
 
 {% block title %}MOPGA - New Project{% endblock %}
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
 {% block content %}
-	<h1>Add a project </h1>
 
-	<form class="" action="{% url 'newProject' %}" method="post" enctype="multipart/form-data">
-		{% csrf_token %}
-		{{ form }}
+<h1>Add a project </h1>
+<div style="padding-left: 20%;">
+<div class="container wrapper">
+	<div class="row">  </br >  </br > </div>
+  <div class="wave"></div>
+		<form  action="{% url 'newProject' %}" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{ form |crispy }}
+			<button type="submit" name="newProject">CREATE</button>
+		</form>
 
-		<button type="submit" name="newProject">CREATE</button>
-	</form>
+
+</div>
+	</div>
 {% endblock %}

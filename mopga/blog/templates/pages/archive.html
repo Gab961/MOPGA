@@ -1,69 +1,71 @@
 {% extends 'layout/base.html' %}
 
 {% block content %}
-<div style="background-color:#FFFDD0">
-    <div class="row">
-        <div class="col-9">
-            <h1> Veuillez saisir le nom du projet : </h1>
-        </div>
-        <div class="col-3" style="text-align: right;">
-            <div class="div-form">
-                <form class="" action="{% url 'archive' %}" method="post">
-                    {% csrf_token %}
-                    <input type="text" name="search" placeholder=" le nom du projet ">
-                    <button type="submit" name="searchButton"><img
-                            src="https://upload.wikimedia.org/wikipedia/commons/0/0d/OOjs_UI_icon_search.svg"
-                            alt="search logo"/>
-                    </button>
-                </form>
+<div class="container">
+    <div style="background-color:#FFFDD0">
+        <div class="row">
+            <div class="col-9">
+                <h1> Veuillez saisir le nom du projet : </h1>
+            </div>
+            <div class="col-3" style="text-align: right;">
+                <div class="div-form">
+                    <form class="" action="{% url 'archive' %}" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="search" placeholder=" le nom du projet ">
+                        <button type="submit" name="searchButton"><img
+                                src="https://upload.wikimedia.org/wikipedia/commons/0/0d/OOjs_UI_icon_search.svg"
+                                alt="search logo"/>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
-<div style="margin-top: 10%;">
-    <div class="row">
-        <div class="col-8">
-            <h1> Liste des projets </h1>
+    <div style="margin-top: 10%;">
+        <div class="row">
+            <div class="col-8">
+                <h1> Liste des projets </h1>
+            </div>
         </div>
+        <table class="table table-bordered table-hover table-striped tablesorter">
+            <thead>
+            <tr>
+                <th class="header"> projectName <i class="icon-sort"></i></th>
+                <th class="header"> description <i class="icon-sort"></i></th>
+                <th class="header"> budget du project <i class="icon-sort"></i></th>
+                <th class="header"> created_at : <i class="icon-sort"></i></th>
+                <th class="header"> updated_at <i class="icon-sort"></i></th>
+                <th class="header"> creator <i class="icon-sort"></i></th>
+                <th class="header"> budget total <i class="icon-sort"></i></th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for projet in queryset %}
+
+            <tr>
+                <td><a href="{% url 'show' id=projet.id %}"> {{projet.projectName}} </a></td>
+                <td>{{projet.description | truncatewords:3}}</td>
+                <td>{{ projet.budget }}</td>
+                <td>
+                    <time datetime="{{ projet.created_at|date:'d-m-Y' }}" class="time">{{ projet.created_at }}</time>
+                </td>
+                <td>
+                    <time datetime="{{ projet.updated_at|date:'d-m-Y' }}" class="time">{{ projet.updated_at }}</time>
+                </td>
+                <td>{{ projet.createur }}</td>
+                <td>{{ projet.budget_en_cours }}</td>
+            </tr>
+
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+
+        {% endblock %}
     </div>
-    <table class="table table-bordered table-hover table-striped tablesorter">
-        <thead>
-        <tr>
-            <th class="header"> projectName <i class="icon-sort"></i></th>
-            <th class="header"> description <i class="icon-sort"></i></th>
-            <th class="header"> budget du project <i class="icon-sort"></i></th>
-            <th class="header"> created_at : <i class="icon-sort"></i></th>
-            <th class="header"> updated_at <i class="icon-sort"></i></th>
-            <th class="header"> creator <i class="icon-sort"></i></th>
-            <th class="header"> budget total <i class="icon-sort"></i></th>
-
-        </tr>
-        </thead>
-        <tbody>
-
-        {% for projet in queryset %}
-
-        <tr>
-            <td><a href="{% url 'show' id=projet.id %}"> {{projet.projectName}} </a></td>
-            <td>{{projet.description | truncatewords:3}}</td>
-            <td>{{ projet.budget }}</td>
-            <td>
-                <time datetime="{{ projet.created_at|date:'d-m-Y' }}" class="time">{{ projet.created_at }}</time>
-            </td>
-            <td>
-                <time datetime="{{ projet.updated_at|date:'d-m-Y' }}" class="time">{{ projet.updated_at }}</time>
-            </td>
-            <td>{{ projet.createur }}</td>
-            <td>{{ projet.budget_en_cours }}</td>
-        </tr>
-
-        {% endfor %}
-
-        </tbody>
-    </table>
-
-
-    {% endblock %}
 </div>

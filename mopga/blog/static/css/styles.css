@@ -13,16 +13,15 @@ footer {
 	text-align: center;
 	color: #ffffff;
 	background-color: #888888;
-	position: absolute;
 	bottom: 0;
 	left: 0;
-	right: 0
+	right: 0;
+	position:fixed;
 }
+
 .titleSite{
     color:#4799BA !important ;
     text-transform: uppercase;
-    position: fixed;
-    padding-left: 3%;
 }
 
 a {
