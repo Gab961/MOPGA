@@ -1,41 +1,42 @@
 {% extends "layout/base.html" %}
 {% block content %}
-    <div class="content-section">
-      <div class="media">
-        <img class="rounded-circle account-img" src="{{ profil.image.url }}">
-        <div class="media-body">
-          <h2 class="account-heading">{{ profil.username }}</h2>
-          <p class="text-secondary">{{ profil.email }}</p>
-        </div>
-      </div>
+<div style="padding-top: 5%;padding-bottom: 5%;">
+  <div class="container wrapper" >
+      <div class="row">  </br >  </br > </div>
+      <div class="wave"></div>
+      <img class="rounded-circle account-img" src="{{ profil.image.url }}">
+      <h2 class="account-heading">{{ profil.username }}</h2>
+      <p class="text-secondary">{{ profil.email }}</p>
       <!-- FORM HERE -->
-    </div>
 
-  {% if profil.creator %}
-  <p>Projets :</p>
-    {% for projet in project %}
+      {% if profil.creator %}
+      <p>Voici les noms des projets :</p>
+      {% for projet in project %}
       <p>
-        {{ projet }}
+          {{ projet.projectName }}
       </p>
-    {% endfor %}
-  {% endif %}
+      {% endfor %}
+      {% endif %}
 
-  {% if profil.financer %}
-  <p>Financé :</p>
-    {% for financ in financed %}
+      {% if profil.financer %}
+      <p>Financé par:</p>
+      {% for financ in financed %}
       <p>
-        {{ financed }}
+          {{ financ.financeur }} -- {{ financ.moneyGiven }} $
       </p>
-    {% endfor %}
-  {% endif %}
 
-  {% if profil.expert %}
-  <p>Expert :</p>
-    {% for note in judged %}
+      {% endfor %}
+      {% endif %}
+
+      {% if profil.expert %}
+      <p>Expert :</p>
+      {% for note in judged %}
       <p>
-        {{ note }}
+          {{ note.expert }}
+          a donné une note :{{ note.note }}
       </p>
-    {% endfor %}
-  {% endif %}
-
+      {% endfor %}
+      {% endif %}
+  </div>
+</div>
 {% endblock content %}

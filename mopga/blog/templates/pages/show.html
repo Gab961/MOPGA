@@ -1,6 +1,7 @@
 {% extends 'layout/base.html' %}
 
 {% block title %}{% endblock %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
@@ -12,39 +13,45 @@
     </div>
     <div class="card-info">
         {{ projet.description }}
+          {% for comment in comments %}
+            <article>
+                l'expert :
+                <a href="{% url 'profile' username=comment.expert %}" > {{comment.expert}}  </a>  Note : {{ comment.note }}/5 <span class="licon icon-like"> </span> - Commentaire :  {{ comment.comment }}
+            </article>
+          {% endfor %}
     </div>
     <div class="utility-info">
         <ul class="utility-list">
             <li><span class="licon icon-like"></span><a href="#">{{ note }} / 5</a></li>
-			<li><span class="licon icon-com"></span><a href="#">{{ comment.note }}/5</a></li>
+			<li><span class="licon icon-com"></span><a href="#">{{ comment.note }}/5</a> </li>
             <li><span class="licon icon-dat"></span> {{ projet.created_at }}</li>
             <li><span class="licon icon-dat"></span> {{ projet.updated_at }}</li>
             <li><span class="licon icon-tag"></span><a href="#">{{projet.budget_en_cours}}</a>/ <a href="#">{{projet.budget}} $</a>
             </li>
+
         </ul>
     </div>
     <div class="gradient-overlay"></div>
     <div class="color-overlay"></div>
+
+</div>
+<div class="container " style="background-color: white;">
     {% if request.user.financer %}
-    <form class="" action="{% url 'show' id=id %}" method="post">
+    <form  action="{% url 'show' id=id %}" method="post">
         {% csrf_token %}
-        {{addmoney}}
+        {{addmoney | crispy}}
         <button type="submit" name="add-money-btn">Send</button>
     </form>
     {% endif %}
     {% if request.user.is_authenticated and request.user.expert %}
 
-    <form class="" action="{% url 'show' id=id %}" method="post">
+    <form  action="{% url 'show' id=id %}" method="post">
         {% csrf_token %}
-        {{ NoteForm }}
+        {{ NoteForm | crispy}}
         <button type="submit" name="note-btn">Note</button>
     </form>
     {% endif %}
-	{% for comment in comments %}
-	<article>
-		<a href="{% url 'profile' username=comment.expert %}">{{comment.expert}}</a> : {{ comment.note }}/5 - {{ comment.comment }}
-	</article>
-	{% endfor %}
+
 </div>
 {% endblock %}
 

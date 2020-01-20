@@ -2,7 +2,7 @@
 .wrapper {
   width: 100%px;
   min-height: 500px;
-  position: absolute;
+  position: relative;
   border-radius: 5px;
   background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
   overflow: hidden;

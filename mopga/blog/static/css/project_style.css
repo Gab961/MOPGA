@@ -139,7 +139,6 @@ h3:after {
 
 .card-info a{
   display:block;
-  width:100px;
   margin:15px auto;
   background:#fff;
   color:#444;
@@ -378,7 +377,7 @@ h3:after {
 }
 .single-project .stats,.single-pen .stats {
     text-align:center;
-    width:100%
+    width:100%;
 }
 .stats svg {
     fill: #bda26b;

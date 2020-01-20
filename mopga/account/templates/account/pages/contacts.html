@@ -3,16 +3,16 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div style="padding-left: 20%; padding-top:3%;">
-<div class="container wrapper" >
-	<div class="row">  </br >  </br > </div>
-  <div class="wave"></div>
-        <h1>Contacts</h1>
-      <form role="form" action="" method="post">
-          {% csrf_token %}
-          {{ form |crispy }}
-          <button type="submit" name="button"> Envoyer </button>
-      </form>
-</div>
+<div style="padding-top: 5%;padding-bottom: 5%;">
+    <div class="container wrapper" >
+        <div class="row">  </br >  </br > </div>
+      <div class="wave"></div>
+            <h1>Contacts</h1>
+          <form role="form" action="" method="post">
+              {% csrf_token %}
+              {{ form |crispy }}
+              <button type="submit" name="button"> Envoyer </button>
+          </form>
+    </div>
 </div>
 {% endblock %}
