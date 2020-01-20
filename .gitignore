@@ -11,6 +11,14 @@ mopga/blog/__pycache__/
 
 mopga/blog/migrations/
 
+<<<<<<< HEAD
+mopga/mopga/__pycache__/
+=======
 mopga/media/project_pics/
 
 mopga/media/utilisateur_pics/
+>>>>>>> site_v2
+
+.idea/
+
+mopga/
