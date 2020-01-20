@@ -83,7 +83,7 @@ def newProject(request):
 	if request.method == 'POST':
 		form = ProjetForm(request.POST)
 		if form.is_valid():
-			image = request.FILES['image']
+			image = request.FILES.get('image')
 			Projet.objects.create(
 			projectName = request.POST.get('projectName'),
 		    description = request.POST.get('description'),

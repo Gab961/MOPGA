@@ -80,7 +80,7 @@ def signup(request):
             utilisateur = User.objects.create_user(
                 username=request.POST.get('username'),
                 address=request.POST.get('address'),
-                image=request.FILES['image'],
+                image=request.FILES.get('image'),
                 email=request.POST.get('email'),
                 # password=make_password(request.POST.get('password1'), salt=None, hasher='default')
                 password=request.POST.get('password1'),
@@ -112,7 +112,7 @@ def signin(request):
     return render(request, 'account/pages/signinup.html', {'formIn': formIn, 'formUp': formUp})
 
 
-@login_required
+
 def profile(request,username):
     profil = User.objects.get(username=username)
     project = Projet.objects.filter(createur=username)

@@ -68,7 +68,7 @@
                 <td>{{ projet.budget }}</td>
                 <td>{{ projet.created_at }}</td>
                 <td>{{ projet.updated_at }}</td>
-                <td>{{ projet.createur }}</td>
+                <td> <a href="{% url 'profile' username=projet.createur %}">{{ projet.createur }}</a></td>
                 <td>{{ projet.budget_en_cours }}</td>
              </tr>
 
